@@ -2,9 +2,10 @@
 Only A example for a merge request https://github.com/dtmilano/AndroidViewClient/pull/135
 
 In this example, MainActivity add a new window via WindowManager.addView, this window is visible but not focusable.
-[This commit](https://github.com/dtmilano/AndroidViewClient/commit/2e68c70786a8de536ee0ddb2cc04f5105044ae55) add a window id to view, so view can compute the right coordinate even if it is in a non-focusable window.
-And script like the following can works.
 
+[This commit](https://github.com/dtmilano/AndroidViewClient/commit/2e68c70786a8de536ee0ddb2cc04f5105044ae55) add a window id to view, so view can compute the right coordinate even if it is in a non-focusable window. Otherwise it will use the focused window's coordinate, which is no correct since the focused window is not the window it resides.
+
+The following script only works for this example with the modification mentioned above.
 ```python
 #! /usr/bin/env python
 
