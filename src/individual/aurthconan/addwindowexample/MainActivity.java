@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
     private WindowManager windowManager;
     private TextView floatingView;
+    private FrameLayout floatingContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,10 @@ public class MainActivity extends Activity {
                 return true;
             }
         });
-        windowManager.addView(floatingView, params);
+
+        floatingContainer = new FrameLayout(this);
+        floatingContainer.addView(floatingView);
+        windowManager.addView(floatingContainer, params);
     }
 
     private static int randomColor() {
@@ -64,7 +68,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        windowManager.removeView(floatingView);
+        windowManager.removeView(floatingContainer);
     }
 
 }
